@@ -1,4 +1,5 @@
 import express from 'express'
+import cors from 'cors'
 
 // Usar un puerto
 const app = express();
@@ -8,6 +9,7 @@ app.listen( app.get("port"), ()=>{
 });
 
 // middlewares: funcoines que se ejecutan antes de las rutas
+app.use(cors()); //permitir conexiones remotas
 
 // rutas
 
