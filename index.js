@@ -2,6 +2,9 @@ import express from 'express'
 import cors from 'cors'
 import morgan from 'morgan';
 import path from 'path'
+import 'dotenv/config' // hace que funcione el archivo process
+import './src/database/dbConnection'
+
 
 // Usar un puerto
 const app = express();
@@ -17,7 +20,7 @@ app.use(express.json()) // permite a mi aplicacion recibir objetos de tipo json 
 
 app.use(morgan('dev')) // Muestra en consola informacion extra de las request get, put, post, etc.
 
-console.log(__dirname); // La variablea __dirname nos devuelve la ruta absoluta donde vive el proyecto
+// console.log(__dirname); // La variablea __dirname nos devuelve la ruta absoluta donde vive el proyecto
 
 app.use(express.static(path.join(__dirname, '/public'))) // ejecutar el archivo estatico en la ruta "dirname" y concatenar public, para poder acceder al index, establecemos la ruta de nuestro archivo estatico
 // nos perimte ejecutar los archivos estaticos de mi proyecto en la ruta raiz de mi backend: http://localhost:4000
