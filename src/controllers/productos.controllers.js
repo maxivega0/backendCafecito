@@ -12,6 +12,20 @@ export const obtenerProductos = async (req,res) =>{
     }
 }
 
+
+export const obtenerProductoID = async (req,res) =>{
+    try{
+        console.log(req.params.id);
+        const producto = await Producto.findById(req.params.id)
+        res.status(200).json(producto)
+    }catch(error){
+        console.log(error);
+        res.status(404).json({
+            mensaje: "Error, no se encontró el producto"
+        })
+    }
+}
+
 export const crearProducto = async (req, res) => {
     try{
         console.log(req.body);
@@ -27,3 +41,17 @@ export const crearProducto = async (req, res) => {
         });
     }
 };
+
+export const borrarProducto = async (req,res) =>{
+    try{
+        await Producto.findByIdAndDelete(req.params.id)
+        res.status(200).json({
+            mensaje: "El producto fue eliminado correctamente"
+        });
+    }catch(error){
+        console.log(error);
+        res.status(404).json({
+            mensaje: "Error, no se pudo borrar el producto"
+        });
+    }
+}
