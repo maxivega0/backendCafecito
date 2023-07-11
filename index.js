@@ -4,10 +4,11 @@ import morgan from 'morgan';
 import path from 'path'
 import 'dotenv/config' // hace que funcione el archivo process
 import './src/database/dbConnection'
-
+import productosRouter from './src/routes/productos.routes'
 
 // Usar un puerto
 const app = express();
+
 app.set('port', process.env.PORT || 4000) // crea una variable en mongo, la variable puerto
 app.listen( app.get("port"), ()=>{
     console.log("Estoy en el puerto "+app.get("port"));
@@ -26,5 +27,5 @@ app.use(express.static(path.join(__dirname, '/public'))) // ejecutar el archivo 
 // nos perimte ejecutar los archivos estaticos de mi proyecto en la ruta raiz de mi backend: http://localhost:4000
 
 // rutas
-
-
+// http://localhost:4000/apicafe/productos
+app.use('/apicafe', productosRouter)
