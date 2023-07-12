@@ -11,7 +11,7 @@ const validarProducto = [
     .notEmpty()
     .withMessage("El precio es un dato obligatorio")
     .isNumeric()
-    .withMessage("El precio debe ser un número ")
+    .withMessage("El precio debe ser un número")
     .custom((value) => {
       if (value >= 1 && value <= 10000) {
         return true;
@@ -20,23 +20,25 @@ const validarProducto = [
       }
     }),
   check("imagen")
-    .isEmpty()
-    .withMessage("La url de imagen es obligatoria")
+    .notEmpty()
+    .withMessage("La url de la imagen es obligatoria")
     .matches(/^https?:\/\/[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(\/[^\s]*)?$/)
     .withMessage(
-      'La URL debe comenzar con "http://" o "https://", seguido de un dominio válido y una ruta opcional.'
+        `La URL debe comenzar con "http://" o "https://", seguido de un dominio válido y una ruta opcional.`
     ),
   check("categoria")
-    .isEmpty()
+    .notEmpty()
     .withMessage("La categoria es obligatoria")
-    .isIn("bebida caliente", "bebida fria", "dulce", "salado")
-    .withMessage("Debe ingresar una categoria valida."),
+    .isIn(["bebida caliente", "bebida fria", "dulce", "salado"])
+    .withMessage("Debe ingresar una categoria valida"),
   check("descripcion")
-    .isEmpty()
-    .withMessage("La descripcion es obligatoria")
+    .notEmpty()
+    .withMessage("La descripcion del producto es obligatoria")
     .isLength({ min: 2, max: 128 })
     .withMessage("El nombre del producto debe tener entre 2 y 128 caracteres"),
-  (req, res, next) => {resultadoValidacion(req, res, next)}
+  (req, res, next) => {
+    resultadoValidacion(req, res, next);
+  },
 ];
 
 export default validarProducto;

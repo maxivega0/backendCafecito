@@ -8,6 +8,13 @@ const productoSchema = new Schema({
     required: true,
     unique: true, // no deja que guarde otro producto con el mismo nombre
   },
+  descripcion: {
+    type: String,
+    minLength: 2,
+    maxLength: 128,
+    required: true,
+    unique: true, // no deja que guarde otro producto con el mismo nombre
+  },
   precio: {
     type: Number,
     min: 0,

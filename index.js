@@ -1,8 +1,8 @@
-import express from 'express'
-import cors from 'cors'
+import express from 'express';
+import cors from 'cors';
 import morgan from 'morgan';
-import path from 'path'
-import 'dotenv/config' // hace que funcione el archivo process
+import path from "path"
+import 'dotenv/config'
 import './src/database/dbConnection'
 import productosRouter from './src/routes/productos.routes'
 
@@ -26,6 +26,6 @@ app.use(morgan('dev')) // Muestra en consola informacion extra de las request ge
 app.use(express.static(path.join(__dirname, '/public'))) // ejecutar el archivo estatico en la ruta "dirname" y concatenar public, para poder acceder al index, establecemos la ruta de nuestro archivo estatico
 // nos perimte ejecutar los archivos estaticos de mi proyecto en la ruta raiz de mi backend: http://localhost:4000
 
-// rutas
+//rutas
 // http://localhost:4000/apicafe/productos
 app.use('/apicafe', productosRouter)
