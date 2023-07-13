@@ -7,7 +7,10 @@ import {
   borrarProducto,
   editarProducto,
 } from "../controllers/productos.controllers";
+import validarJWT from "../helpers/token-verify";
 import validarProducto from "../helpers/validacionProductos";
+
+
 
 const router = Router();
 
@@ -18,7 +21,7 @@ const router = Router();
 router
   .route("/productos")
   .get(obtenerProductos)
-  .post(validarProducto, crearProducto); // solo puedo poner una de cada tipo(get, etc)
+  .post([validarJWT, validarProducto], crearProducto); // solo puedo poner una de cada tipo(get, etc)
 router
   .route("/productos/:id")
   .get(obtenerProductoID)

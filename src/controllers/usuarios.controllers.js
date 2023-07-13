@@ -1,5 +1,6 @@
 import Usuario from '../models/usuario';
 import bcrypt from 'bcrypt';
+import generarJWT from '../helpers/token-sing';
 
 export const obtenerUsuarios = async (req, res) => {
     try {
@@ -65,10 +66,16 @@ export const login = async (req, res) => {
         if (!passwordValido) {
             return res.status(400).json({mensaje: 'Correo o contraseña invalido - contraseña'})
         }
+        // generar el toker
+
+        const token = await generarJWT(usuario.nombreUsuario)
+
+
         // Responder al frotend que debe loguear el usuario
         res.status(200).json({
             mensaje: 'Usuario autenticado correctamente',
-            nombreUsuario : usuario.nombreUsuario
+            nombreUsuario : usuario.nombreUsuario,
+            token: token
         })
     } catch (error) {
         console.log(error);
