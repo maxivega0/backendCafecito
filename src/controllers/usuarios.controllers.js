@@ -33,7 +33,6 @@ export const crearUsuario = async (req, res) => {
         let usuario = await Usuario.findOne({email: req.body.email})
         if (usuario) {
             return res.status(400).json({mensaje: 'Ya existe un usuario con el mail enviado'})
-            
         }
         // console.log(req.body);
         const usuarioNuevo = new Usuario(req.body);

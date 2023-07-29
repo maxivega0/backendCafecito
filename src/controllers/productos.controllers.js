@@ -28,8 +28,6 @@ export const obtenerProductoID = async (req, res) => {
 
 export const crearProducto = async (req, res) => {
   try {
-    
-
     console.log(req.body);
     const productoNuevo = new Producto(req.body); // Producto es un modelo
     await productoNuevo.save();
@@ -61,8 +59,8 @@ export const editarProducto = async (req, res) => {
   try {
     await Producto.findByIdAndUpdate(req.params.id, req.body); //en el primer parametro recibimos el id y lo cambiamos por los datos del body
     res.status(200).json({
-        mensaje: 'El producto fue editado correctamente'
-    })
+      mensaje: "El producto fue editado correctamente",
+    });
   } catch (error) {
     console.log(error);
     res.status(400).json({
